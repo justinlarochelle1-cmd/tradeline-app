@@ -1,27 +1,26 @@
-export default function Dashboard() {
-  return (
-    <div style={{ display: "flex", height: "100vh", fontFamily: "sans-serif" }}>
-      {/* Sidebar */}
-      <aside style={{
-        width: 240,
-        background: "#111",
-        color: "white",
-        padding: 20
-      }}>
-        <h2>Tradeline</h2>
-        <p style={{ opacity: 0.6 }}>Dashboard</p>
-      </aside>
+"use client";
+import { useState } from "react";
 
-      {/* Main content */}
-      <main style={{
-        flex: 1,
-        padding: 40,
-        background: "#0a0a0a",
-        color: "white"
-      }}>
-        <h1>Welcome</h1>
-        <p>Your software starts here.</p>
-      </main>
-    </div>
+export default function Dashboard() {
+  const [items, setItems] = useState<string[]>([]);
+
+  function addItem() {
+    setItems([...items, "New customer"]);
+  }
+
+  return (
+    <main style={{ padding: 40, background: "#0a0a0a", color: "white", minHeight: "100vh" }}>
+      <h1>Tradeline Dashboard</h1>
+
+      <button onClick={addItem} style={{ padding: 10, marginTop: 20 }}>
+        Add Customer
+      </button>
+
+      <ul style={{ marginTop: 20 }}>
+        {items.map((item, i) => (
+          <li key={i}>{item}</li>
+        ))}
+      </ul>
+    </main>
   );
 }
